@@ -1,0 +1,326 @@
+{
+    "1": {
+        "shortname": "mainnet",
+        "id": 1,
+        "rpc_url": "https://eth.merkle.io",
+        "block_explorer_url": "https://etherscan.io",
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api.etherscan.io/api",
+        "tick": 12,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "10": {
+        "shortname": "optimism",
+        "id": 10,
+        "rpc_url": "https://mainnet.optimism.io",
+        "block_explorer_url": "https://optimistic.etherscan.io",
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api-optimistic.etherscan.io/api",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "100": {
+        "shortname": "gnosis",
+        "id": 100,
+        "rpc_url": "https://rpc.gnosischain.com",
+        "block_explorer_url": "https://gnosisscan.io",
+        "native_currency_symbol": "XDAI",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api.gnosisscan.io/api",
+        "tick": 5,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "1101": {
+        "shortname": "polygonZkEvm",
+        "id": 1101,
+        "rpc_url": "https://zkevm-rpc.com",
+        "block_explorer_url": "https://zkevm.polygonscan.com",
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "block_explorer_api_url": "https://api-zkevm.polygonscan.com/api",
+        "tick": 4,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "1116": {
+        "shortname": "coreDao",
+        "id": 1116,
+        "rpc_url": "https://rpc.coredao.org",
+        "block_explorer_url": "https://scan.coredao.org",
+        "native_currency_symbol": "CORE",
+        "native_currency_decimals": 18,
+        "tick": 3,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "137": {
+        "shortname": "polygon",
+        "id": 137,
+        "rpc_url": "https://polygon-rpc.com",
+        "block_explorer_url": "https://polygonscan.com",
+        "native_currency_symbol": "POL",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api.polygonscan.com/api",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "146": {
+        "shortname": "sonic",
+        "id": 146,
+        "tenderly_support": true,
+        "native_currency_symbol": "S",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://rpc.soniclabs.com",
+        "block_explorer_url": "https://sonicscan.org/",
+        "tick": 1,
+        "addresses": {
+            "Multicall3": "0x2dA5DdBeC63dfd93112AedFa44F880927AA5Ae41"
+        }
+    },
+    "169": {
+        "shortname": "manta",
+        "id": 169,
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://pacific-rpc.manta.network/http",
+        "block_explorer_url": "https://pacific-explorer.manta.network",
+        "block_explorer_api_url": "https://pacific-explorer.manta.network/api",
+        "tick": 10,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "200901": {
+        "shortname": "btr",
+        "id": 200901,
+        "native_currency_symbol": "BTC",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://rpc.bitlayer.org",
+        "rpc_extra_urls": [
+            "https://rpc.bitlayer-rpc.com",
+            "https://rpc.ankr.com/bitlayer"
+        ],
+        "block_explorer_url": "https://www.btrscan.com",
+        "tick": 3,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "223": {
+        "shortname": "bsquared",
+        "id": 223,
+        "rpc_url": "https://rpc.bsquared.network",
+        "block_explorer_url": "https://explorer.bsquared.network",
+        "native_currency_symbol": "BTC",
+        "native_currency_decimals": 18,
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "30": {
+        "shortname": "rootstock",
+        "id": 30,
+        "rpc_url": "https://public-node.rsk.co",
+        "block_explorer_url": "https://explorer.rsk.co",
+        "native_currency_symbol": "RBTC",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "tick": 32,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "34443": {
+        "shortname": "mode",
+        "id": 34443,
+        "tenderly_support": true,
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://mainnet.mode.network",
+        "block_explorer_url": "https://modescan.io",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "4200": {
+        "shortname": "merlin",
+        "id": 4200,
+        "native_currency_symbol": "BTC",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://rpc.merlinchain.io",
+        "block_explorer_url": "https://scan.merlinchain.io",
+        "block_explorer_api_url": "https://scan.merlinchain.io/api",
+        "tick": 3,
+        "addresses": {
+            "Multicall3": "0xa3EdA2d9B39fE6fade25C88221f8c0ad42E22C43"
+        }
+    },
+    "42161": {
+        "shortname": "arbitrum",
+        "id": 42161,
+        "rpc_url": "https://arb1.arbitrum.io/rpc",
+        "block_explorer_url": "https://arbiscan.io",
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api.arbiscan.io/api",
+        "tick": 1,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "43114": {
+        "shortname": "avalanche",
+        "id": 43114,
+        "rpc_url": "https://api.avax.network/ext/bc/C/rpc",
+        "block_explorer_url": "https://snowtrace.io",
+        "native_currency_symbol": "AVAX",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api.snowtrace.io",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "5000": {
+        "shortname": "mantle",
+        "id": 5000,
+        "tenderly_support": true,
+        "native_currency_symbol": "MNT",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://rpc.mantle.xyz",
+        "block_explorer_url": "https://mantlescan.xyz/",
+        "block_explorer_api_url": "https://api.mantlescan.xyz/api",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0x05f3105fc9FC531712b2570f1C6E11dD4bCf7B3c"
+        }
+    },
+    "534352": {
+        "shortname": "scroll",
+        "id": 534352,
+        "rpc_url": "https://rpc.scroll.io",
+        "block_explorer_url": "https://scrollscan.com",
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api.scrollscan.com/api",
+        "tick": 3,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "56": {
+        "shortname": "bsc",
+        "id": 56,
+        "rpc_url": "https://rpc.ankr.com/bsc",
+        "block_explorer_url": "https://bscscan.com",
+        "native_currency_symbol": "BNB",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api.bscscan.com/api",
+        "tick": 3,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "59144": {
+        "shortname": "linea",
+        "id": 59144,
+        "tenderly_support": true,
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://rpc.linea.build",
+        "block_explorer_url": "https://lineascan.build",
+        "block_explorer_api_url": "https://api.lineascan.build/api",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "6001": {
+        "shortname": "bounceBit",
+        "id": 6001,
+        "native_currency_symbol": "BB",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://fullnode-mainnet.bouncebitapi.com",
+        "block_explorer_url": "https://bbscan.io",
+        "tick": 4,
+        "addresses": {
+            "Multicall3": "0xF10191215bb8Ce28dFc783DA93FE484d56b080F7"
+        }
+    },
+    "60808": {
+        "shortname": "bob",
+        "id": 60808,
+        "tenderly_support": true,
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://rpc.gobob.xyz",
+        "block_explorer_url": "https://explorer.gobob.xyz",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "80094": {
+        "shortname": "berachain",
+        "id": 80094,
+        "rpc_url": "https://rpc.berachain.com",
+        "native_currency_symbol": "BERA",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "tick": 2,
+        "block_explorer_url": "https://berascan.com",
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "81457": {
+        "shortname": "blast",
+        "id": 81457,
+        "rpc_url": "https://rpc.blast.io",
+        "block_explorer_url": "https://blastscan.io",
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "tenderly_support": true,
+        "block_explorer_api_url": "https://api.blastscan.io/api",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    },
+    "8453": {
+        "shortname": "base",
+        "id": 8453,
+        "tenderly_support": true,
+        "native_currency_symbol": "ETH",
+        "native_currency_decimals": 18,
+        "rpc_url": "https://mainnet.base.org",
+        "block_explorer_url": "https://basescan.org",
+        "block_explorer_api_url": "https://api.basescan.org/api",
+        "tick": 2,
+        "addresses": {
+            "Multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11"
+        }
+    }
+}

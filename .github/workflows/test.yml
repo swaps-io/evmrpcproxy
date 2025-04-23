@@ -1,0 +1,51 @@
+name: Run tests
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - main
+      - dev
+      - prod
+  pull_request:
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  run-tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: "Set up Python ${{ env.PYTHON_VERSION }}"
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ env.PYTHON_VERSION }}"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.6.16"
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -eu
+          uv run --group=dev --isolated which python
+
+      - name: Run checks
+        env:
+          RUN_ENV: tests
+        shell: bash
+        run: |
+          set -eux
+          uv run --group=dev --isolated -- hyd --check
+          uv run --group=dev --isolated -- uv lock --check
+          uv run --group=dev --isolated -- uv pip check

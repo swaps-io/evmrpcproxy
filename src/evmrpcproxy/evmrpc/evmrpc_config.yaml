@@ -1,0 +1,240 @@
+mainnet:
+  x_chain_id: 1
+  quiknode: {url: "{quiknode_mainnet}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_mainnet}", max_blocks_distance: 5000}
+  infura: "https://mainnet.infura.io/v3/{infura_token}"
+  alchemy: {url: "https://eth-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  drpc: "https://lb.drpc.org/ogrpc?network=eth&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/eth/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://eth-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/eth", max_blocks_distance: 1000}
+optimism:
+  x_chain_id: 10
+  # Quiknode `eth_getLogs`:
+  # https://www.quicknode.com/docs/ethereum/eth_getLogs
+  # "block range limit for this RPC method is 5 blocks for users on the Free plan and 10,000 blocks for those on paid plans"
+  quiknode: {url: "{quiknode_optimism}", max_blocks_distance: 10000}
+  # Infura `eth_getLogs`:
+  # https://docs.infura.io/api/networks/optimism/json-rpc-methods/eth_getlogs
+  # "A maximum of 5,000 parameters in a single request"
+  # "A maximum of 10,000 results can be returned by a single query"
+  # "Query duration must not exceed 10 seconds"
+  infura: "https://optimism-mainnet.infura.io/v3/{infura_token}"
+  alchemy: {url: "https://opt-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  # drpc `eth_getLogs`:
+  # https://drpc.org/docs/optimism-api/eventlogs/eth_getLogs
+  # "A maximuim of 5,000 parameters in a single request"
+  # "A maximum of 10,000 results can be returned by a single query"
+  # "Query duration must not exceed 10 seconds"
+  drpc: "https://lb.drpc.org/ogrpc?network=optimism&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/optimism/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://optimism-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/op", max_blocks_distance: 1000}
+  blockpi: {url: "{blockpi_optimism}", max_blocks_distance: 5000}
+rootstock:
+  x_chain_id: 30
+  drpc: "https://lb.drpc.org/ogrpc?network=rootstock&dkey={drpc_token}"
+  blastapi: {url: "https://rootstock-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # rsk_public: "https://public-node.rsk.co"  # does not allow eth_getLogs
+bsc:
+  x_chain_id: 56
+  quiknode: {url: "{quiknode_bsc}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_bsc}", max_blocks_distance: 5000}
+  infura: "https://bsc-mainnet.infura.io/v3/{infura_token}"
+  alchemy: {url: "https://bnb-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  drpc: "https://lb.drpc.org/ogrpc?network=bsc&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/bsc/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://bsc-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/bnb", max_blocks_distance: 1000}
+gnosis:
+  x_chain_id: 100
+  quiknode: {
+    url: "{quiknode_gnosis}", max_blocks_distance: 10000,
+    # # A temporary hack. Left here as an example.
+    # headers: [["x-qn-backend", "archive"]],
+  }
+  blockpi: {url: "{blockpi_gnosis}", max_blocks_distance: 5000}
+  alchemy: {url: "https://gnosis-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  drpc: "https://lb.drpc.org/ogrpc?network=gnosis&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/gnosis/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://gnosis-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/gnosis", max_blocks_distance: 1000}
+polygon:
+  x_chain_id: 137
+  quiknode: {url: "{quiknode_polygon}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_polygon}", max_blocks_distance: 5000}
+  infura: "https://polygon-mainnet.infura.io/v3/{infura_token}"
+  alchemy: {url: "https://polygon-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  drpc: "https://lb.drpc.org/ogrpc?network=polygon&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/polygon/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://polygon-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+sonic:
+  x_chain_id: 146
+  blockpi: {url: "{blockpi_sonic}", max_blocks_distance: 5000}
+  drpc: "https://lb.drpc.org/ogrpc?network=sonic&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/sonic_mainnet/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://sonic-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+manta:
+  x_chain_id: 169
+  drpc: "https://lb.drpc.org/ogrpc?network=manta-pacific&dkey={drpc_token}"
+  onerpc: {url: "https://1rpc.io/{onerpc_token}/manta", max_blocks_distance: 1000}
+bsquared:
+  x_chain_id: 223
+  # ankr `eth_getLogs`:
+  # https://www.ankr.com/docs/rpc-service/chains/chains-api/optimism/#eth_getlogs
+  # no known limit
+  ankr: {url: "https://rpc.ankr.com/b2/{ankr_token}", max_blocks_distance: 20000}
+  # bsquared `eth_getLogs`: ~30 second limit
+  bsquared_public: {url: "https://rpc.bsquared.network", max_blocks_distance: 20000}
+  # b2_rpc `eth_getLogs`: ~30 second limit
+  b2_rpc_public: {url: "https://mainnet.b2-rpc.com", max_blocks_distance: 20000}
+# fantom:
+#   x_chain_id: 250
+#   quiknode: {url: "{quiknode_fantom}", max_blocks_distance: 10000}
+# zksync:
+#   x_chain_id: 324
+#   quiknode: {url: "{quiknode_zksync}", max_blocks_distance: 10000}
+polygonzkevm:
+  x_chain_id: 1101
+  quiknode: {url: "{quiknode_polygonzkevm}", max_blocks_distance: 10000}
+  ankr: {url: "https://rpc.ankr.com/polygon_zkevm/{ankr_token}", max_blocks_distance: 20000}
+  drpc: "https://lb.drpc.org/ogrpc?network=polygon-zkevm&dkey={drpc_token}"
+  # blastapi `eth_getLogs`:
+  # https://docs.blastapi.io/blast-documentation/apis-documentation/core-api/oktc/eth_getlogs
+  # "Requests can have a block range of at most 500 blocks."
+  blastapi: {url: "https://polygon-zkevm-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # blockpi `eth_getLogs`:
+  # https://docs.blockpi.io/documentations/api-reference/oasys/eth_getlogs
+  # "The block range of eth_getLogs is limited to 1024 for public endpoints and 5000 for private endpoints"
+  blockpi: {url: "{blockpi_polygonzkevm}", max_blocks_distance: 5000}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/polygon/zkevm", max_blocks_distance: 1000}
+coredao:
+  x_chain_id: 1116
+  drpc: "https://lb.drpc.org/ogrpc?network=core&dkey=AqtwIjvaK0hlsaJ8SLU63RfdqT2neykR75BYhlDYfw4q"
+  ankr: {url: "https://rpc.ankr.com/core/{ankr_token}", max_blocks_distance: 20000}
+  # onerpc `eth_getLogs`:
+  # `{"code": -32000, "message": "eth_getLogs is limited to a 1000 blocks range"}`
+  # https://docs.1rpc.io/resources/specifications#response-limit
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/core", max_blocks_distance: 1000}
+merlin:
+  x_chain_id: 4200
+  blockpi: {url: "{blockpi_merlin}", max_blocks_distance: 1024}
+mantle:
+  x_chain_id: 5000
+  infura: "https://mantle-mainnet.infura.io/v3/{infura_token}"
+  blockpi: {url: "{blockpi_mantle}", max_blocks_distance: 5000}
+  # quiknode: {url: "{quiknode_mantle}", max_blocks_distance: 10000}
+  # Alchemy `eth_getLogs`:
+  # https://docs.alchemy.com/reference/eth-getlogs
+  # "10K logs in the response OR a 2K block range with no cap on logs in the response and 150MB limit on the response size"
+  alchemy: {url: "https://mantle-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  ankr: {url: "https://rpc.ankr.com/mantle/{ankr_token}", max_blocks_distance: 20000}
+  drpc: "https://lb.drpc.org/ogrpc?network=mantle&dkey={drpc_token}"
+  blastapi: {url: "https://mantle-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+bouncebit:
+  x_chain_id: 6001
+  # blockvision `eth_getLogs`:
+  # https://docs.blockvision.org/reference/eth_getlogs-ethereum
+  # does not document the max distance, but tells about it in the error response.
+  blockvision: {url: "https://bouncebit-mainnet.blockvision.org/v1/{blockvision_token}", max_blocks_distance: 100, supports_batch: false}
+  # # Public node, has *higher* allowed blocks range, but has known consistency problems.
+  bouncebitapi_public: {url: "https://fullnode-mainnet.bouncebitapi.com/", max_blocks_distance: 1500, supports_batch: false}
+base:
+  x_chain_id: 8453
+  quiknode: {url: "{quiknode_base}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_base}", max_blocks_distance: 5000}
+  infura: "https://base-mainnet.infura.io/v3/{infura_token}"
+  drpc: "https://lb.drpc.org/ogrpc?network=base&dkey={drpc_token}"
+  alchemy: {url: "https://base-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  ankr: {url: "https://rpc.ankr.com/base/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://base-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/base", max_blocks_distance: 1000}
+mode:
+  x_chain_id: 34443
+  # quiknode: {url: "{quiknode_mode}", max_blocks_distance: 10000}
+  blastapi: {url: "https://mode-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  onerpc: {url: "https://1rpc.io/{onerpc_token}/mode", max_blocks_distance: 1000}
+  drpc: "https://lb.drpc.org/ogrpc?network=mode&dkey={drpc_token}"
+arbitrum:
+  x_chain_id: 42161
+  quiknode: {url: "{quiknode_arbitrum}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_arbitrum}", max_blocks_distance: 5000}
+  infura: "https://arbitrum-mainnet.infura.io/v3/{infura_token}"
+  alchemy: {url: "https://arb-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  drpc: "https://lb.drpc.org/ogrpc?network=arbitrum&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/arbitrum/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://arbitrum-one.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/arb", max_blocks_distance: 1000}
+avalanche:
+  x_chain_id: 43114
+  quiknode: {url: "{quiknode_avalanche}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_avalanche}", max_blocks_distance: 5000}
+  infura: "https://avalanche-mainnet.infura.io/v3/{infura_token}"
+  alchemy: {url: "https://avax-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  ankr: {url: "https://rpc.ankr.com/avalanche/{ankr_token}", max_blocks_distance: 20000}
+  drpc: "https://lb.drpc.org/ogrpc?network=avalanche&dkey={drpc_token}"
+  blastapi: {url: "https://ava-mainnet.blastapi.io/{blastapi_token}/ext/bc/C/rpc", max_blocks_distance: 500}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/avax/c", max_blocks_distance: 1000}
+linea:
+  x_chain_id: 59144
+  # only `drpc` and `alchemy` seem to support `linea_estimateGas`.
+  # Should probably have at most 1 node that doesn't support it.
+  drpc: "https://lb.drpc.org/ogrpc?network=linea&dkey={drpc_token}"
+  alchemy: {url: "https://linea-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  # quicknode: {url: "{quiknode_linea}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_linea}", max_blocks_distance: 5000}
+  # infura: "https://linea-mainnet.infura.io/v3/{infura_token}"
+  # ankr: {url: "https://rpc.ankr.com/linea/{ankr_token}", max_blocks_distance: 20000} #recheck
+  # blastapi: {url: "https://linea-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # onerpc: {url: "https://1rpc.io/{onerpc_token}/linea", max_blocks_distance: 1000}
+  # Public blockpi heavily limits response size.
+  # blockpi_public: {url: "https://linea.blockpi.network/v1/rpc/public", max_blocks_distance: 100}
+  # onerpc_public: "https://1rpc.io/linea"
+  # # linea `eth_getLogs`: up to 10000 results
+  # linea_public: {url: "https://rpc.linea.build", max_blocks_distance: 3000}
+bob:
+  x_chain_id: 60808
+  blastapi: {url: "https://bob-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  drpc: "https://lb.drpc.org/ogrpc?network=bob&dkey={drpc_token}"
+berachain:
+  x_chain_id: 80094
+  quiknode: {url: "{quiknode_berachain}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_berachain}", max_blocks_distance: 5000}
+  berachain_public: {url: "https://rpc.berachain.com", max_blocks_distance: 20000}
+blast:
+  x_chain_id: 81457
+  quiknode: {url: "{quiknode_blast}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_blast}", max_blocks_distance: 5000}
+  infura: "https://blast-mainnet.infura.io/v3/{infura_token}"
+  alchemy: {url: "https://blast-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  drpc: "https://lb.drpc.org/ogrpc?network=blast&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/blast/{ankr_token}", max_blocks_distance: 20000}
+  publicnode_public: "https://blast-rpc.publicnode.com"
+  blastapi: {url: "https://blastl2-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+  # To consider:
+  # blastapi: {url: "https://blastl2-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+btr:
+  x_chain_id: 200901
+  ankr: {url: "https://rpc.ankr.com/bitlayer/{ankr_token}", max_blocks_distance: 20000}
+  # bitlayer `eth_getLogs`: ~30 second limit
+  bitlayer_public: {url: "https://rpc.bitlayer.org", max_blocks_distance: 20000}
+  # rockx `eth_getLogs`: ~30 second limit
+  rockx_public: "https://rpc-bitlayer.rockx.com"
+scroll:
+  x_chain_id: 534352
+  quiknode: {url: "{quiknode_scroll}", max_blocks_distance: 10000}
+  blockpi: {url: "{blockpi_scroll}", max_blocks_distance: 5000}
+  infura: "https://scroll-mainnet.infura.io/v3/{infura_token}"
+  alchemy: {url: "https://scroll-mainnet.g.alchemy.com/v2/{alchemy_token}", max_blocks_distance: 2000}
+  drpc: "https://lb.drpc.org/ogrpc?network=scroll&dkey={drpc_token}"
+  ankr: {url: "https://rpc.ankr.com/scroll/{ankr_token}", max_blocks_distance: 20000}
+  blastapi: {url: "https://scroll-mainnet.blastapi.io/{blastapi_token}", max_blocks_distance: 500}
+bitcoin:
+  x_chain_id: 668467
+  # TODO: `supports_blockbook` processing (for `bb_...` methods such as `bb_getaddress`).
+  quiknode: {url: "{quiknode_bitcoin}", supports_blockbook: true}
+  # # For now, leaving only the blockbook-supporting node for btc.
+  # drpc: "https://lb.drpc.org/ogrpc?network=bitcoin&dkey={drpc_token}"
+# solana:
+#   # x_chain_id: 101? 900? 0x736f6c616e61? Will need a fake value or something.
+#   quiknode: {url: "{quiknode_solana}"}

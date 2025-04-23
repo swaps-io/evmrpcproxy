@@ -1,0 +1,9 @@
+# Whitelist context
+**
+
+!src/**
+!pyproject.toml
+!uv.lock
+# Submodule deps:
+!lib
+lib/flash-chaindata/.git

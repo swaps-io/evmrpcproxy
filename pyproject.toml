@@ -1,0 +1,45 @@
+[project]
+name = "evmrpcproxy"
+version = "0.2.0"
+description = ""
+authors = [{ name = "HoverHell", email = "hoverhell@gmail.com" }]
+requires-python = "~=3.11"
+readme = "README.md"
+dependencies = [
+    "hyapp>=5,<6",
+    "typer>=0.12.5,<0.13",
+    "sentry-sdk[fastapi]>=2.22.0,<3",
+    "uvicorn>=0.30.6,<0.31",
+    "orjson>=3.10.15,<4",
+]
+
+[project.scripts]
+evmrpcproxy = "evmrpcproxy.__main__:main"
+
+[dependency-groups]
+dev = [
+    "hydev>=3.1,<4",
+    "types-pyyaml>=6.0.12.20241230,<7",
+]
+
+[tool.hydev]
+ignore_paths = ["lib"]
+
+[tool.uv]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/evmrpcproxy"]
+
+[tool.hatch.build.targets.wheel]
+include = ["src/evmrpcproxy"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/evmrpcproxy" = "evmrpcproxy"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+timeout = 15
