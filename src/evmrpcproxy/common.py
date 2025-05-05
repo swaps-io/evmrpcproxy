@@ -14,7 +14,7 @@ SIMPLE_CHAIN_INFOS = {
     name: SimpleChainInfo(
         id=chain_config["id"],
         shortname=name,
-        non_evm=chain_config.get("non_evm", False),
+        non_evm=chain_config.get("non_evm", False) or chain_config.get("non_vm", False),
         multicall3_address=chain_config.get("addresses", {}).get("Multicall3"),
     )
     for name, chain_config in CHAIN_BY_NAME.items()

@@ -10,12 +10,16 @@ from fastapi import Body, Depends, HTTPException, Query
 from hyapp.datetimes import dt_now
 from hyapp.traces import TRACE_ID_VAR
 
+from evmrpcproxy.stats import RequestContext
+
+from .api_common import AppState
 from .blockchains import CHAIN_BY_ID, CHAIN_BY_NAME
 from .common import SIMPLE_CHAIN_INFOS
 from .evmrpc.evmrpc_check import evmrpc_check
 from .evmrpc.evmrpc_client import EVMRPCErrorException, EVMRPCRequestParams
-from .evmrpc.evmrpc_models import EVMRPCResponse
+from .evmrpc.evmrpc_models import EVMRPCRequest, EVMRPCResponse
 from .settings import Settings
+from .stats import RequestStatsKey
 
 if TYPE_CHECKING:
     from .evmrpc.evmrpc_client import EVMRPCClient
@@ -27,9 +31,14 @@ API_ROUTER = fastapi.APIRouter()
 TResponse = dict[str, Any]
 
 
+def app_state_extract(request: fastapi.Request) -> AppState:
+    app_state = request.app.state.app_state
+    assert isinstance(app_state, AppState)
+    return app_state
+
+
 def settings_extract(request: fastapi.Request) -> Settings:
-    settings: Settings = request.app.state.settings
-    return settings
+    return app_state_extract(request).settings
 
 
 TSettingsDep = Annotated[Settings, Depends(settings_extract)]
@@ -86,7 +95,7 @@ async def evmrpc_check_v1(
     sequential: Annotated[bool, Query] = False,
     chain_names: Annotated[str, Query] = "",
 ) -> Any:
-    evmrpc_cli: EVMRPCClient = request.app.state.evmrpccli
+    evmrpc_cli: EVMRPCClient = app_state_extract(request).evmrpccli
 
     auth_tokens_config = settings.opts.evmrpc_auth_tokens
     requester = auth_tokens_config.get(token)
@@ -110,6 +119,36 @@ COMPAT_CHAIN_NAME_MAP: dict[str, str] = {
 }
 
 
+async def increment_req_stats(
+    *, app_state: AppState, request_ctx: RequestContext, req: EVMRPCRequest, success: bool, final: bool
+) -> None:
+    if not app_state.erp_request_stats:
+        LOGGER.debug("Skipping request stats")
+        return
+
+    key = RequestStatsKey(
+        final=final,
+        success=success,  # placeholder
+        node=req.node_config.node_name,
+        try_n=req.try_n,
+        **request_ctx.dict(),
+    )
+
+    await app_state.erp_request_stats.increment_stats(key)
+
+
+def _get_chain_config(chain: int | str) -> dict[str, Any]:
+    chain_maybe_name = str(chain).lower()
+    chain_maybe_name = COMPAT_CHAIN_NAME_MAP.get(chain_maybe_name, chain_maybe_name)
+
+    chain_config = CHAIN_BY_NAME.get(chain_maybe_name)
+    if not chain_config and (isinstance(chain, int) or chain.isdigit()):
+        chain_config = CHAIN_BY_ID.get(int(chain))
+    if not chain_config:
+        raise HTTPException(status_code=404, detail=f"Chain not found: {chain!r}")
+    return chain_config
+
+
 @API_ROUTER.post("/api/v1/evmrpc/{chain}")  # noqa: FS003 f-string missing prefix
 @wrap_common()
 async def evmrpcproxy(
@@ -122,36 +161,44 @@ async def evmrpcproxy(
     *,
     mangle_getlogs: Annotated[bool, Query] = False,
 ) -> Any:
-    evmrpc_cli: EVMRPCClient = request.app.state.evmrpccli
+    app_state = app_state_extract(request)
+    evmrpc_cli = app_state.evmrpccli
 
     auth_tokens_config = settings.opts.evmrpc_auth_tokens
     requester = auth_tokens_config.get(token)
     if requester is None:
         raise HTTPException(status_code=403, detail="Invalid authentication")
 
-    chain_maybe_name = str(chain).lower()
-    chain_maybe_name = COMPAT_CHAIN_NAME_MAP.get(chain_maybe_name, chain_maybe_name)
+    chain_config = _get_chain_config(chain)
+    chain_name = chain_config["shortname"].lower()
+    # A debug parameter for use in case of suspected difference between direct and proxied requests.
+    node_name = request.query_params.get("x_node_name")
+    # Non-authoritative optional requester comment.
+    x_requester = request.query_params.get("x_requester") or "-"
 
-    chain_config = CHAIN_BY_NAME.get(chain_maybe_name)
-    if not chain_config and (isinstance(chain, int) or chain.isdigit()):
-        chain_config = CHAIN_BY_ID.get(int(chain))
-    if not chain_config:
-        raise HTTPException(status_code=404, detail=f"Chain not found: {chain!r}")
-
-    context = {"requester": requester}
+    getattr(request.app.state, "erp_upstream_stats", None)
+    request_ctx = RequestContext(
+        env=settings.opts.stats_env_name or settings.opts.env,
+        chain=chain_name,
+        requester=requester,
+        x_requester=x_requester,
+        method="batch" if isinstance(data, list) else data.get("method", "-") if isinstance(data, dict) else "???",
+    )
+    context = request_ctx.dict()
     if log_extra:
         context["x_extra"] = log_extra
 
-    # A debug parameter for use in case of suspected difference between direct and proxied requests.
-    node_name = request.query_params.get("x_node_name")
+    async def error_hook(*, req: EVMRPCRequest, exc: Exception, final: bool) -> None:
+        await increment_req_stats(app_state=app_state, request_ctx=request_ctx, req=req, success=False, final=final)
 
     try:
         evmrpc_resp = await evmrpc_cli.request(
-            chain_name=chain_config["shortname"].lower(),
+            chain_name=chain_name,
             data=data,
             node_name=node_name,
             context=context,
             req_params=EVMRPCRequestParams(allow_getlogs_mangle=mangle_getlogs, chain_id=chain_config["id"]),
+            error_hook=error_hook,
         )
     except EVMRPCErrorException as exc:
         resp_data = (
@@ -161,13 +208,21 @@ async def evmrpcproxy(
             if exc.last_response
             else {"error": "unknown error"}
         )
+
+        # Note that the stats for this case are handled through `error_hook`
+
         return fastapi.responses.JSONResponse(
             resp_data,
             status_code=exc.last_status or fastapi.status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
+    await increment_req_stats(
+        app_state=app_state, request_ctx=request_ctx, req=evmrpc_resp.req, success=True, final=True
+    )
+
     resp_headers: dict[str, str] = {
         "X-EVMRPC-Node": evmrpc_resp.req.node_config.node_name,
         "X-EVMRPC-Attempt": str(evmrpc_resp.req.try_n),
     }
+
     return fastapi.responses.JSONResponse(evmrpc_resp.data, headers=resp_headers)

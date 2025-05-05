@@ -1,5 +1,5 @@
 import dataclasses
-from typing import Any, NamedTuple, Self
+from typing import Any, NamedTuple, Protocol, Self
 
 from .evmrpc_config_model import EVMRPCNodeConfig
 
@@ -159,6 +159,7 @@ class EVMRPCErrorException(Exception):
     exc: Exception | None
     last_response: EVMRPCResponse | None
     last_status: int
+    req: EVMRPCRequest
     message: str = "EVMRPC error"
 
     def replace(self, **kwargs: Any) -> Self:
@@ -171,3 +172,7 @@ class EVMRPCErrorResponseException(EVMRPCErrorException):
     exc: Exception | None = None
     message: str = "EVMRPC response error"
     last_status: int = 0
+
+
+class ErrorHookCallable(Protocol):
+    async def __call__(self, *, req: EVMRPCRequest, exc: Exception, final: bool) -> None: ...

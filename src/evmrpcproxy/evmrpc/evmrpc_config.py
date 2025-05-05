@@ -17,7 +17,10 @@ EVMRPC_CONFIG_PUBLIC_RAW = {
         "x_chain_id": chain_info["id"],
         **{
             urllib.parse.urlparse(rpc_url).hostname: {"url": rpc_url, "max_blocks_distance": 100}
-            for rpc_url in [chain_info["rpc_url"], *chain_info.get("rpc_extra_urls", [])]
+            for rpc_url in [
+                *([chain_info["rpc_url"]] if chain_info.get("rpc_url") else []),
+                *(chain_info.get("rpc_extra_urls") or []),
+            ]
         },
     }
     for chain_name, chain_info in CHAIN_BY_NAME.items()

@@ -17,6 +17,7 @@ from .evmrpc_middleware import (
     TEVMRPCHandler,
 )
 from .evmrpc_models import (
+    ErrorHookCallable,
     EVMRPCErrorException,
     EVMRPCErrorResponseException,
     EVMRPCRequest,
@@ -139,7 +140,7 @@ class EVMRPCClient:
         )
 
         if retriable:
-            raise EVMRPCErrorResponseException(last_response=resp)
+            raise EVMRPCErrorResponseException(last_response=resp, req=resp.req)
         # If not retriable, the error-response should get returned as-is,
         # same as non-error responses.
 
@@ -175,6 +176,7 @@ class EVMRPCClient:
                     else "EVMRPC error failed to parse as JSON list/dict"
                 ),
                 last_status=http_resp.status,
+                req=req,
             ) from exc
 
         resp = EVMRPCResponse(data=resp_data, req=req)
@@ -186,7 +188,11 @@ class EVMRPCClient:
 
         if not http_resp_ok:
             raise EVMRPCErrorException(
-                exc=None, last_response=resp, last_status=http_resp.status, message="EVMRPC node error status"
+                exc=None,
+                last_response=resp,
+                last_status=http_resp.status,
+                message="EVMRPC node error status",
+                req=req,
             )
 
         return resp
@@ -216,6 +222,7 @@ class EVMRPCClient:
         *,
         context: dict | None = None,
         req_params: EVMRPCRequestParams = EVMRPCRequestParams(),
+        error_hook: ErrorHookCallable | None = None,
     ) -> EVMRPCResponse:
         common_log_context = {"chain": chain_name, **(context or {})}
         req_log_context = self._make_req_log_context(data)
@@ -245,6 +252,9 @@ class EVMRPCClient:
                     "x_node_time": round(end_time - node_start_time, 3),
                     "x_total_time": round(end_time - start_time, 3),
                 }
+
+                if error_hook is not None:
+                    await error_hook(req=req, exc=exc, final=final)
 
                 if final:
                     self.logger.error("EVMRPC final error", extra={**req_log_context, **log_extra})

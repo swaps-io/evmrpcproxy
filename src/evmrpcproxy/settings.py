@@ -49,6 +49,8 @@ class SettingsOptsBase(pydantic_settings.BaseSettings):
         return (init_settings,)
 
     env: TEnvName = "dev"  # `ERP_ENV`
+    # Override of env for stats.
+    stats_env_name: str | None = None
 
     api_bind: str = "0.0.0.0"
     api_port: int = 13431
@@ -56,6 +58,9 @@ class SettingsOptsBase(pydantic_settings.BaseSettings):
     api_dev_reload: bool = True
 
     sentry_dsn: str = ""
+    # clickhouse https url for statistics
+    ch_url: str = ""
+    ch_request_stats_table_name: str = "erp_request_stats"
 
     # config override is primarily for the tests.
     evmrpc_config: EVMRPCConfig | None = None  # `ERP_EVMRPC_CONFIG`
